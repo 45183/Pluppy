@@ -163,6 +163,21 @@ const userSlice = createSlice({
                 state.error = action.payload;
                 toast.error(action.payload);
             })
+
+            .addCase(payProducts.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(payProducts.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.cartDetail = [];
+                state.userData.cart = [];
+                toast.info('상품을 구매했습니다.');
+            })
+            .addCase(payProducts.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+                toast.error(action.payload);
+            })
     }
 })
 

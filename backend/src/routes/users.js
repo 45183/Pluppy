@@ -4,6 +4,8 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const auth = require('../middleware/auth');
 const Product = require('../models/Product');
+const Payment = require('../models/Payment');
+const async = require('async');
 
 router.get('/auth', auth, async (req, res, next) => {
     return res.json({
@@ -235,5 +237,66 @@ router.delete('/like', auth, async (req, res, next) => {
     }
 })
 
+
+router.post('/payment', auth, async(req, res) => {
+    // User Collection 내부의 History 필드에 간단한 결제 정보 넣기
+    let history = [];
+    let transactionData = {};
+
+    req.body.cartDetail.forEach((item) => {
+        history.push({
+            dateOfPurchase: new Date().toISOString(),
+            name: item.title,
+            id: item._id,
+            price: item.price,
+            quantity: item.quantity,
+            paymentId: crypto.randomUUID()  // 랜덤값
+        })
+    })
+
+    // Payment Collection 안에 자세한 결제 정보 넣기
+    transactionData.user = {
+        id: req.user._id,
+        name: req.user.name,
+        email: req.user.email
+    };
+
+    transactionData.product = history;
+
+    // User Collection
+    await User.findOneAndUpdate(
+        {_id: req.user._id},
+        {$push: {
+            history: {$each: history}
+            }, 
+        $set: {
+                cart: []    // 기존 카트 비우기
+            }
+        }
+    )
+
+    // Payment Collection
+    const payment = new Payment(transactionData);
+    const paymentDocs = await payment.save();
+
+    let products = [];
+    paymentDocs.product.forEach(item => {
+        products.push({id:item.id, quantity: item.quantity})
+    })
+
+    async.eachSeries(products, async (item) => {
+        await Product.updateOne(
+            {_id: item.id},
+            {
+                $inc: {
+                    'sold': item.quantity
+                }
+            }
+        )
+    }, (err) => {
+        if(err) return res.status(500).send(err);
+        return res.sendStatus(200);
+    })
+})
 
 module.exports = router;
