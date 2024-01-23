@@ -64,7 +64,11 @@ router.get('/', async (req, res, next) => {
     };
 
     if(term){
-        findArgs["$text"] = {$search: term}
+        // 검색어와 완전히 일치할 경우만 나타남
+        // findArgs["$text"] = {$search: term}
+        
+        // 검색어가 들어가있으면 나타남
+        findArgs["title"] = {'$regex': term}
     };
 
 
