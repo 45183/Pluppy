@@ -26,7 +26,7 @@ app.get('/', (req, res, next) => {
 
 app.use('/users', require('./routes/users'));
 app.use('/shop', require('./routes/shop'));
-// app.use('/community', require('./routes/community'));
+app.use('/community', require('./routes/community'));
 
 app.use((error, req, res, next) => {
     res.status(error.status || 500)

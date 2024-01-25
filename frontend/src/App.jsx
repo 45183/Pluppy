@@ -22,6 +22,8 @@ import ShopPage from './pages/ShopPage';
 import CommunityPage from './pages/CommunityPage';
 import Mypage from './pages/MypagePage';
 import FAQPage from './pages/FAQPage';
+import UploadCommunityPage from './pages/UploadCommunityPage';
+import DetailCommunityPage from './pages/DetailCommunityPage';
 
 function Layout() {
   return (
@@ -63,6 +65,8 @@ function App() {
           <Route path='/protected' element={<ProtectedPage />} />
           <Route path='/shop/:productId' element={<DetailProductPage />} />
           <Route path='/shop/upload' element={<UploadProductPage />} />
+          <Route path='/community/upload' element={<UploadCommunityPage />} />
+          <Route path='/community/:communityId' element={<DetailCommunityPage />} />
           <Route path='/user/cart' element={<CartPage />} />
           <Route path='/user/like' element={<LikePage />} />
           <Route path='/mypage' element={<Mypage />} />
