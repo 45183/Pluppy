@@ -4,6 +4,7 @@ import SearchInput from '../ShopPage/Sections/SearchInput'
 import axiosInstance from '../../utils/axios';
 import { categories } from '../../utils/filterData';
 import CardCommunity from './Sections/CardCommunity';
+import { Link } from 'react-router-dom';
 
 const CommunityPage = () => {
 
@@ -116,6 +117,12 @@ const CommunityPage = () => {
           <button onClick={handleLoadMore} className='px-4 py-2 mt-5 text-white bg-black rounded-md hover:bg-gray-500'>더 보기</button>
       </div> 
       }
+
+      <div className='flex justify-end'>
+        <button className='border-[1px] bg-gray-200 rounded-md px-2 py-1 mt-5'>
+          <Link to={'/community/upload'}>글쓰기</Link>
+        </button>
+      </div>
     </section>
   )
 }
