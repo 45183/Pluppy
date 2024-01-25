@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
-import logo from './logo.png';
 import NavItem from './Sections/NavItem';
 
 const Navbar = () => {
@@ -17,7 +16,7 @@ const Navbar = () => {
         <div className='flex items-center justify-between mx-5 sm:mx-10 lg:mx-20'>
           {/* logo */}
           <div className='flex items-center text-2xl h-20'>
-            <Link to="/"><img src={logo} width={120}/></Link>
+            <Link to="/"><img src='/logo.png' width={120}/></Link>
           </div>
 
           <div>
