@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addToCart, addToLike, authUser, getCartItems, getLikeItems, loginUser, logoutUser, registerUser, removeCartItem, removeLikeItem } from "./thunkFunctions";
+import { addToCart, addToLike, authUser, getCartItems, getLikeItems, loginUser, logoutUser, payProducts, registerUser, removeCartItem, removeLikeItem } from "./thunkFunctions";
 import { toast } from "react-toastify";
 
 const initialState = {
