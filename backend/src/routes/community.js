@@ -74,4 +74,27 @@ router.get('/', async (req, res, next) => {
     };
 })
 
+router.get('/:id', auth, async(req, res, next) => {
+    const type = req.query.type;
+    let communityIds = req.params.id;
+
+    if(type === 'array'){
+        let ids = productIds.split(',');
+        communityIds = ids.map(item => {
+            return item;
+        });
+    }
+
+    try {
+        const community = await Community
+            .find({_id: {$in: communityIds}})
+            .populate('writer');
+
+        return res.status(200).send(community);
+    } catch (error) {
+        next(error);
+    }
+})
+
+
 module.exports = router;
