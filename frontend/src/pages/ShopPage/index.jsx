@@ -113,11 +113,11 @@ const StorePage = () => {
             </div>
 
             {/* filter */}
-            <div className='flex gap-3'>
-                <div className='w-1/2'>
+            <div className='flex flex-col gap-3'>
+                <div className='w-full'>
                     <CheckBox categories={categories} checkedCategories={filters.categories} onFilters={filters => handleFilters(filters, 'categories')} />
                 </div>
-                <div className='w-1/2'>
+                <div className='w-full'>
                     <RadioBox prices={prices} checkedPrice={filters.price} onFilters={filters => handleFilters(filters, "price")} />
                 </div>
             </div>

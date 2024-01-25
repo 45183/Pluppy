@@ -17,7 +17,7 @@ const CheckBox = ({categories, checkedCategories, onFilters}) => {
   };
   
   return (
-    <div className='p-2 mb-3 bg-gray-100 rounded-md'>
+    <div className='flex gap-10 p-2 mb-3 bg-gray-100 rounded-md justify-center'>
       {categories?.map(category => (
         <div key={category._id}>
           <input type='checkbox' onChange={()=>handleToggle(category._id)} 
