@@ -96,7 +96,7 @@ const CommunityPage = () => {
       </div>
 
       {/* filter */}
-      <div className='flex'>
+      <div className='flex flex-col'>
         <CheckBox categories={categories} checkedCategories={filters.categories} onFilters={filters => handleFilters(filters, 'categories')} />
       </div>
 
