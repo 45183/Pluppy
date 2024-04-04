@@ -20,7 +20,7 @@
     </th>
   </tr>
   <tr>
-    <td colspan="2" style="align-items:center">
+    <td colspan="2">
      <img src="https://github.com/45183/Pluppy/assets/97267651/7a43a236-31d8-4b7b-970b-d819b91dc7a4" />
     </td>
    </tr> 
